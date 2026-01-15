@@ -40,14 +40,14 @@
         <script src="data/JaipurtoDelhiShortestRoute_2.js"></script>
         <script src="data/DelhitoJaipurShortestRoute_3.js"></script>
         <script src="data/Competitors_4.js"></script>
-        <script src="data/PetrolCNGStatons_5.js"></script>
-        <script src="data/POIs_6.js"></script>
+        <script src="data/POIs_5.js"></script>
+        <script src="data/PetrolCNGStatons_6.js"></script>
         <script src="data/TollPlaza_7.js"></script>
         <script src="data/ProposedLocation_8.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[26.83246945,74.63284212420561],[28.676838550000003,78.53187287579439]]);
+        }).fitBounds([[26.834874274999997,74.63058702995326],[28.681308725,78.53398397004673]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -396,53 +396,7 @@
         });
         bounds_group.addLayer(layer_Competitors_4);
         map.addLayer(layer_Competitors_4);
-        function pop_PetrolCNGStatons_5(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Name</th>\
-                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_PetrolCNGStatons_5_0() {
-            return {
-                pane: 'pane_PetrolCNGStatons_5',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/PetrolCNGStatons_5.svg',
-            iconSize: [30.4, 30.4]
-        }),
-                interactive: true,
-            }
-        }
-        map.createPane('pane_PetrolCNGStatons_5');
-        map.getPane('pane_PetrolCNGStatons_5').style.zIndex = 405;
-        map.getPane('pane_PetrolCNGStatons_5').style['mix-blend-mode'] = 'normal';
-        var layer_PetrolCNGStatons_5 = new L.geoJson(json_PetrolCNGStatons_5, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_PetrolCNGStatons_5',
-            layerName: 'layer_PetrolCNGStatons_5',
-            pane: 'pane_PetrolCNGStatons_5',
-            onEachFeature: pop_PetrolCNGStatons_5,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_PetrolCNGStatons_5_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_PetrolCNGStatons_5);
-        map.addLayer(layer_PetrolCNGStatons_5);
-        function pop_POIs_6(feature, layer) {
+        function pop_POIs_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Name</th>\
@@ -460,38 +414,89 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_POIs_6_0() {
+        function style_POIs_5_0() {
             return {
-                pane: 'pane_POIs_6',
+                pane: 'pane_POIs_5',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/POIs_6.svg',
+            iconUrl: 'markers/POIs_5.svg',
             iconSize: [30.4, 30.4]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_POIs_6');
-        map.getPane('pane_POIs_6').style.zIndex = 406;
-        map.getPane('pane_POIs_6').style['mix-blend-mode'] = 'normal';
-        var layer_POIs_6 = new L.geoJson(json_POIs_6, {
+        map.createPane('pane_POIs_5');
+        map.getPane('pane_POIs_5').style.zIndex = 405;
+        map.getPane('pane_POIs_5').style['mix-blend-mode'] = 'normal';
+        var layer_POIs_5 = new L.geoJson(json_POIs_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_POIs_6',
-            layerName: 'layer_POIs_6',
-            pane: 'pane_POIs_6',
-            onEachFeature: pop_POIs_6,
+            dataVar: 'json_POIs_5',
+            layerName: 'layer_POIs_5',
+            pane: 'pane_POIs_5',
+            onEachFeature: pop_POIs_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_POIs_6_0(feature));
+                return L.marker(latlng, style_POIs_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_POIs_6);
-        map.addLayer(layer_POIs_6);
+        bounds_group.addLayer(layer_POIs_5);
+        map.addLayer(layer_POIs_5);
+        function pop_PetrolCNGStatons_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lat'] !== null ? autolinker.link(String(feature.properties['Lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Long'] !== null ? autolinker.link(String(feature.properties['Long']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_PetrolCNGStatons_6_0() {
+            return {
+                pane: 'pane_PetrolCNGStatons_6',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/PetrolCNGStatons_6.svg',
+            iconSize: [30.4, 30.4]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PetrolCNGStatons_6');
+        map.getPane('pane_PetrolCNGStatons_6').style.zIndex = 406;
+        map.getPane('pane_PetrolCNGStatons_6').style['mix-blend-mode'] = 'normal';
+        var layer_PetrolCNGStatons_6 = new L.geoJson(json_PetrolCNGStatons_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PetrolCNGStatons_6',
+            layerName: 'layer_PetrolCNGStatons_6',
+            pane: 'pane_PetrolCNGStatons_6',
+            onEachFeature: pop_PetrolCNGStatons_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_PetrolCNGStatons_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PetrolCNGStatons_6);
+        map.addLayer(layer_PetrolCNGStatons_6);
         function pop_TollPlaza_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -591,8 +596,8 @@
         var overlaysTree = [
             {label: '<img src="legend/ProposedLocation_8.png" /> Proposed Location', layer: layer_ProposedLocation_8},
             {label: '<img src="legend/TollPlaza_7.png" /> Toll Plaza', layer: layer_TollPlaza_7},
-            {label: '<img src="legend/POIs_6.png" /> POIs', layer: layer_POIs_6},
-            {label: '<img src="legend/PetrolCNGStatons_5.png" /> Petrol-CNG Statons', layer: layer_PetrolCNGStatons_5},
+            {label: '<img src="legend/PetrolCNGStatons_6.png" /> Petrol-CNG Statons', layer: layer_PetrolCNGStatons_6},
+            {label: '<img src="legend/POIs_5.png" /> POIs', layer: layer_POIs_5},
             {label: '<img src="legend/Competitors_4.png" /> Competitors', layer: layer_Competitors_4},
             {label: '<img src="legend/DelhitoJaipurShortestRoute_3.png" /> Delhi to Jaipur Shortest Route', layer: layer_DelhitoJaipurShortestRoute_3},
             {label: '<img src="legend/JaipurtoDelhiShortestRoute_2.png" /> Jaipur to Delhi Shortest Route', layer: layer_JaipurtoDelhiShortestRoute_2},
