@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
         html, body, #map {
@@ -36,18 +37,19 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
-        <script src="data/DISTRICTS_1.js"></script>
-        <script src="data/JaipurtoDelhiShortestRoute_2.js"></script>
-        <script src="data/DelhitoJaipurShortestRoute_3.js"></script>
-        <script src="data/Competitors_4.js"></script>
-        <script src="data/POIs_5.js"></script>
-        <script src="data/PetrolCNGStatons_6.js"></script>
-        <script src="data/TollPlaza_7.js"></script>
-        <script src="data/ProposedLocation_8.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Districts_1.js"></script>
+        <script src="data/DelhiLehTrack_2.js"></script>
+        <script src="data/TollPlazaz_3.js"></script>
+        <script src="data/Petrol_CNGStation_4.js"></script>
+        <script src="data/EVChargingStations_5.js"></script>
+        <script src="data/POIsFranchise_6.js"></script>
+        <script src="data/HotelsResortsB2B_7.js"></script>
+        <script src="data/Proposed_Location_8.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[26.834874274999997,74.63058702995326],[28.681308725,78.53398397004673]]);
+        }).fitBounds([[28.877046592499998,72.51715550288023],[34.274714287500004,81.81427894711979]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -133,15 +135,11 @@
         });
         layer_BaseMap_0;
         map.addLayer(layer_BaseMap_0);
-        function pop_DISTRICTS_1(feature, layer) {
+        function pop_Districts_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">DISTRICT</th>\
                         <td>' + (feature.properties['DISTRICT'] !== null ? autolinker.link(String(feature.properties['DISTRICT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">STATE_UT</th>\
-                        <td>' + (feature.properties['STATE_UT'] !== null ? autolinker.link(String(feature.properties['STATE_UT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -151,11 +149,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_DISTRICTS_1_0() {
+        function style_Districts_1_0() {
             return {
-                pane: 'pane_DISTRICTS_1',
+                pane: 'pane_Districts_1',
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -164,22 +162,25 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_DISTRICTS_1');
-        map.getPane('pane_DISTRICTS_1').style.zIndex = 401;
-        map.getPane('pane_DISTRICTS_1').style['mix-blend-mode'] = 'normal';
-        var layer_DISTRICTS_1 = new L.geoJson(json_DISTRICTS_1, {
+        map.createPane('pane_Districts_1');
+        map.getPane('pane_Districts_1').style.zIndex = 401;
+        map.getPane('pane_Districts_1').style['mix-blend-mode'] = 'normal';
+        var layer_Districts_1 = new L.geoJson(json_Districts_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_DISTRICTS_1',
-            layerName: 'layer_DISTRICTS_1',
-            pane: 'pane_DISTRICTS_1',
-            onEachFeature: pop_DISTRICTS_1,
-            style: style_DISTRICTS_1_0,
+            dataVar: 'json_Districts_1',
+            layerName: 'layer_Districts_1',
+            pane: 'pane_Districts_1',
+            onEachFeature: pop_Districts_1,
+            style: style_Districts_1_0,
         });
-        bounds_group.addLayer(layer_DISTRICTS_1);
-        map.addLayer(layer_DISTRICTS_1);
-        function pop_JaipurtoDelhiShortestRoute_2(feature, layer) {
+        bounds_group.addLayer(layer_Districts_1);
+        map.addLayer(layer_Districts_1);
+        function pop_DelhiLehTrack_2(feature, layer) {
             var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -216,6 +217,78 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(String(feature.properties['type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name_3'] !== null ? autolinker.link(String(feature.properties['name_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cmt_3'] !== null ? autolinker.link(String(feature.properties['cmt_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['desc_3'] !== null ? autolinker.link(String(feature.properties['desc_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['src_3'] !== null ? autolinker.link(String(feature.properties['src_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_href_3'] !== null ? autolinker.link(String(feature.properties['link1_href_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_text_3'] !== null ? autolinker.link(String(feature.properties['link1_text_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_type_3'] !== null ? autolinker.link(String(feature.properties['link1_type_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_href_3'] !== null ? autolinker.link(String(feature.properties['link2_href_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_text_3'] !== null ? autolinker.link(String(feature.properties['link2_text_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_type_3'] !== null ? autolinker.link(String(feature.properties['link2_type_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number_3'] !== null ? autolinker.link(String(feature.properties['number_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type_3'] !== null ? autolinker.link(String(feature.properties['type_3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name_2'] !== null ? autolinker.link(String(feature.properties['name_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cmt_2'] !== null ? autolinker.link(String(feature.properties['cmt_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['desc_2'] !== null ? autolinker.link(String(feature.properties['desc_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['src_2'] !== null ? autolinker.link(String(feature.properties['src_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_href_2'] !== null ? autolinker.link(String(feature.properties['link1_href_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_text_2'] !== null ? autolinker.link(String(feature.properties['link1_text_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_type_2'] !== null ? autolinker.link(String(feature.properties['link1_type_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_href_2'] !== null ? autolinker.link(String(feature.properties['link2_href_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_text_2'] !== null ? autolinker.link(String(feature.properties['link2_text_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_type_2'] !== null ? autolinker.link(String(feature.properties['link2_type_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number_2'] !== null ? autolinker.link(String(feature.properties['number_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type_2'] !== null ? autolinker.link(String(feature.properties['type_2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -224,9 +297,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_JaipurtoDelhiShortestRoute_2_0() {
+        function style_DelhiLehTrack_2_0() {
             return {
-                pane: 'pane_JaipurtoDelhiShortestRoute_2',
+                pane: 'pane_DelhiLehTrack_2',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -237,9 +310,9 @@
                 interactive: false,
             }
         }
-        function style_JaipurtoDelhiShortestRoute_2_1() {
+        function style_DelhiLehTrack_2_1() {
             return {
-                pane: 'pane_JaipurtoDelhiShortestRoute_2',
+                pane: 'pane_DelhiLehTrack_2',
                 opacity: 1,
                 color: 'rgba(255,96,17,1.0)',
                 dashArray: '',
@@ -250,57 +323,33 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_JaipurtoDelhiShortestRoute_2');
-        map.getPane('pane_JaipurtoDelhiShortestRoute_2').style.zIndex = 402;
-        map.getPane('pane_JaipurtoDelhiShortestRoute_2').style['mix-blend-mode'] = 'normal';
-        var layer_JaipurtoDelhiShortestRoute_2 = new L.geoJson.multiStyle(json_JaipurtoDelhiShortestRoute_2, {
+        map.createPane('pane_DelhiLehTrack_2');
+        map.getPane('pane_DelhiLehTrack_2').style.zIndex = 402;
+        map.getPane('pane_DelhiLehTrack_2').style['mix-blend-mode'] = 'normal';
+        var layer_DelhiLehTrack_2 = new L.geoJson.multiStyle(json_DelhiLehTrack_2, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_JaipurtoDelhiShortestRoute_2',
-            layerName: 'layer_JaipurtoDelhiShortestRoute_2',
-            pane: 'pane_JaipurtoDelhiShortestRoute_2',
-            onEachFeature: pop_JaipurtoDelhiShortestRoute_2,
-            styles: [style_JaipurtoDelhiShortestRoute_2_0,style_JaipurtoDelhiShortestRoute_2_1,]
+            dataVar: 'json_DelhiLehTrack_2',
+            layerName: 'layer_DelhiLehTrack_2',
+            pane: 'pane_DelhiLehTrack_2',
+            onEachFeature: pop_DelhiLehTrack_2,
+            styles: [style_DelhiLehTrack_2_0,style_DelhiLehTrack_2_1,]
         });
-        bounds_group.addLayer(layer_JaipurtoDelhiShortestRoute_2);
-        map.addLayer(layer_JaipurtoDelhiShortestRoute_2);
-        function pop_DelhitoJaipurShortestRoute_3(feature, layer) {
+        bounds_group.addLayer(layer_DelhiLehTrack_2);
+        map.addLayer(layer_DelhiLehTrack_2);
+        function pop_TollPlazaz_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(String(feature.properties['name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">State</th>\
+                        <td>' + (feature.properties['State'] !== null ? autolinker.link(String(feature.properties['State']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['cmt'] !== null ? autolinker.link(String(feature.properties['cmt']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Plaza Name</th>\
+                        <td>' + (feature.properties['Plaza Name'] !== null ? autolinker.link(String(feature.properties['Plaza Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['desc'] !== null ? autolinker.link(String(feature.properties['desc']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['src'] !== null ? autolinker.link(String(feature.properties['src']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link1_href'] !== null ? autolinker.link(String(feature.properties['link1_href']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link1_text'] !== null ? autolinker.link(String(feature.properties['link1_text']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link1_type'] !== null ? autolinker.link(String(feature.properties['link1_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link2_href'] !== null ? autolinker.link(String(feature.properties['link2_href']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link2_text'] !== null ? autolinker.link(String(feature.properties['link2_text']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['link2_type'] !== null ? autolinker.link(String(feature.properties['link2_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(String(feature.properties['number']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(String(feature.properties['type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">City</th>\
+                        <td>' + (feature.properties['City'] !== null ? autolinker.link(String(feature.properties['City']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -310,47 +359,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_DelhitoJaipurShortestRoute_3_0() {
+        function style_TollPlazaz_3_0() {
             return {
-                pane: 'pane_DelhitoJaipurShortestRoute_3',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'round',
-                lineJoin: 'round',
-                weight: 8.0,
-                fillOpacity: 0,
-                interactive: false,
+                pane: 'pane_TollPlazaz_3',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/TollPlazaz_3.svg',
+            iconSize: [30.4, 30.4]
+        }),
+                interactive: true,
             }
         }
-        function style_DelhitoJaipurShortestRoute_3_1() {
-            return {
-                pane: 'pane_DelhitoJaipurShortestRoute_3',
-                opacity: 1,
-                color: 'rgba(51,160,44,1.0)',
-                dashArray: '',
-                lineCap: 'round',
-                lineJoin: 'round',
-                weight: 6.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_DelhitoJaipurShortestRoute_3');
-        map.getPane('pane_DelhitoJaipurShortestRoute_3').style.zIndex = 403;
-        map.getPane('pane_DelhitoJaipurShortestRoute_3').style['mix-blend-mode'] = 'normal';
-        var layer_DelhitoJaipurShortestRoute_3 = new L.geoJson.multiStyle(json_DelhitoJaipurShortestRoute_3, {
+        map.createPane('pane_TollPlazaz_3');
+        map.getPane('pane_TollPlazaz_3').style.zIndex = 403;
+        map.getPane('pane_TollPlazaz_3').style['mix-blend-mode'] = 'normal';
+        var layer_TollPlazaz_3 = new L.geoJson(json_TollPlazaz_3, {
             attribution: '',
-            interactive: false,
-            dataVar: 'json_DelhitoJaipurShortestRoute_3',
-            layerName: 'layer_DelhitoJaipurShortestRoute_3',
-            pane: 'pane_DelhitoJaipurShortestRoute_3',
-            onEachFeature: pop_DelhitoJaipurShortestRoute_3,
-            styles: [style_DelhitoJaipurShortestRoute_3_0,style_DelhitoJaipurShortestRoute_3_1,]
+            interactive: true,
+            dataVar: 'json_TollPlazaz_3',
+            layerName: 'layer_TollPlazaz_3',
+            pane: 'pane_TollPlazaz_3',
+            onEachFeature: pop_TollPlazaz_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_TollPlazaz_3_0(feature));
+            },
         });
-        bounds_group.addLayer(layer_DelhitoJaipurShortestRoute_3);
-        map.addLayer(layer_DelhitoJaipurShortestRoute_3);
-        function pop_Competitors_4(feature, layer) {
+        bounds_group.addLayer(layer_TollPlazaz_3);
+        map.addLayer(layer_TollPlazaz_3);
+        function pop_Petrol_CNGStation_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Name</th>\
@@ -364,39 +405,85 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Competitors_4_0() {
+        function style_Petrol_CNGStation_4_0() {
             return {
-                pane: 'pane_Competitors_4',
+                pane: 'pane_Petrol_CNGStation_4',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Competitors_4.svg',
+            iconUrl: 'markers/Petrol_CNGStation_4.svg',
             iconSize: [30.4, 30.4]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_Competitors_4');
-        map.getPane('pane_Competitors_4').style.zIndex = 404;
-        map.getPane('pane_Competitors_4').style['mix-blend-mode'] = 'normal';
-        var layer_Competitors_4 = new L.geoJson(json_Competitors_4, {
+        map.createPane('pane_Petrol_CNGStation_4');
+        map.getPane('pane_Petrol_CNGStation_4').style.zIndex = 404;
+        map.getPane('pane_Petrol_CNGStation_4').style['mix-blend-mode'] = 'normal';
+        var layer_Petrol_CNGStation_4 = new L.geoJson(json_Petrol_CNGStation_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Competitors_4',
-            layerName: 'layer_Competitors_4',
-            pane: 'pane_Competitors_4',
-            onEachFeature: pop_Competitors_4,
+            dataVar: 'json_Petrol_CNGStation_4',
+            layerName: 'layer_Petrol_CNGStation_4',
+            pane: 'pane_Petrol_CNGStation_4',
+            onEachFeature: pop_Petrol_CNGStation_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Competitors_4_0(feature));
+                return L.marker(latlng, style_Petrol_CNGStation_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Competitors_4);
-        map.addLayer(layer_Competitors_4);
-        function pop_POIs_5(feature, layer) {
+        bounds_group.addLayer(layer_Petrol_CNGStation_4);
+        map.addLayer(layer_Petrol_CNGStation_4);
+        function pop_EVChargingStations_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_EVChargingStations_5_0() {
+            return {
+                pane: 'pane_EVChargingStations_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/EVChargingStations_5.svg',
+            iconSize: [30.4, 30.4]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EVChargingStations_5');
+        map.getPane('pane_EVChargingStations_5').style.zIndex = 405;
+        map.getPane('pane_EVChargingStations_5').style['mix-blend-mode'] = 'normal';
+        var layer_EVChargingStations_5 = new L.geoJson(json_EVChargingStations_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EVChargingStations_5',
+            layerName: 'layer_EVChargingStations_5',
+            pane: 'pane_EVChargingStations_5',
+            onEachFeature: pop_EVChargingStations_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_EVChargingStations_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_EVChargingStations_5);
+        map.addLayer(layer_EVChargingStations_5);
+        function pop_POIsFranchise_6(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Name</th>\
@@ -414,48 +501,47 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_POIs_5_0() {
+        function style_POIsFranchise_6_0() {
             return {
-                pane: 'pane_POIs_5',
+                pane: 'pane_POIsFranchise_6',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/POIs_5.svg',
+            iconUrl: 'markers/POIsFranchise_6.svg',
             iconSize: [30.4, 30.4]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_POIs_5');
-        map.getPane('pane_POIs_5').style.zIndex = 405;
-        map.getPane('pane_POIs_5').style['mix-blend-mode'] = 'normal';
-        var layer_POIs_5 = new L.geoJson(json_POIs_5, {
+        map.createPane('pane_POIsFranchise_6');
+        map.getPane('pane_POIsFranchise_6').style.zIndex = 406;
+        map.getPane('pane_POIsFranchise_6').style['mix-blend-mode'] = 'normal';
+        var layer_POIsFranchise_6 = new L.geoJson(json_POIsFranchise_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_POIs_5',
-            layerName: 'layer_POIs_5',
-            pane: 'pane_POIs_5',
-            onEachFeature: pop_POIs_5,
+            dataVar: 'json_POIsFranchise_6',
+            layerName: 'layer_POIsFranchise_6',
+            pane: 'pane_POIsFranchise_6',
+            onEachFeature: pop_POIsFranchise_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_POIs_5_0(feature));
+                return L.marker(latlng, style_POIsFranchise_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_POIs_5);
-        map.addLayer(layer_POIs_5);
-        function pop_PetrolCNGStatons_6(feature, layer) {
+        bounds_group.addLayer(layer_POIsFranchise_6);
+        map.addLayer(layer_POIsFranchise_6);
+        function pop_HotelsResortsB2B_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lat'] !== null ? autolinker.link(String(feature.properties['Lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Long'] !== null ? autolinker.link(String(feature.properties['Long']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Type</th>\
+                        <td>' + (feature.properties['Type'] !== null ? autolinker.link(String(feature.properties['Type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -465,47 +551,43 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_PetrolCNGStatons_6_0() {
+        function style_HotelsResortsB2B_7_0() {
             return {
-                pane: 'pane_PetrolCNGStatons_6',
+                pane: 'pane_HotelsResortsB2B_7',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/PetrolCNGStatons_6.svg',
+            iconUrl: 'markers/HotelsResortsB2B_7.svg',
             iconSize: [30.4, 30.4]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_PetrolCNGStatons_6');
-        map.getPane('pane_PetrolCNGStatons_6').style.zIndex = 406;
-        map.getPane('pane_PetrolCNGStatons_6').style['mix-blend-mode'] = 'normal';
-        var layer_PetrolCNGStatons_6 = new L.geoJson(json_PetrolCNGStatons_6, {
+        map.createPane('pane_HotelsResortsB2B_7');
+        map.getPane('pane_HotelsResortsB2B_7').style.zIndex = 407;
+        map.getPane('pane_HotelsResortsB2B_7').style['mix-blend-mode'] = 'normal';
+        var layer_HotelsResortsB2B_7 = new L.geoJson(json_HotelsResortsB2B_7, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_PetrolCNGStatons_6',
-            layerName: 'layer_PetrolCNGStatons_6',
-            pane: 'pane_PetrolCNGStatons_6',
-            onEachFeature: pop_PetrolCNGStatons_6,
+            dataVar: 'json_HotelsResortsB2B_7',
+            layerName: 'layer_HotelsResortsB2B_7',
+            pane: 'pane_HotelsResortsB2B_7',
+            onEachFeature: pop_HotelsResortsB2B_7,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_PetrolCNGStatons_6_0(feature));
+                return L.marker(latlng, style_HotelsResortsB2B_7_0(feature));
             },
         });
-        bounds_group.addLayer(layer_PetrolCNGStatons_6);
-        map.addLayer(layer_PetrolCNGStatons_6);
-        function pop_TollPlaza_7(feature, layer) {
+        bounds_group.addLayer(layer_HotelsResortsB2B_7);
+        map.addLayer(layer_HotelsResortsB2B_7);
+        function pop_Proposed_Location_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">plaza_name</th>\
-                        <td>' + (feature.properties['plaza_name'] !== null ? autolinker.link(String(feature.properties['plaza_name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">city</th>\
-                        <td>' + (feature.properties['city'] !== null ? autolinker.link(String(feature.properties['city']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Location</th>\
+                        <td>' + (feature.properties['Location'] !== null ? autolinker.link(String(feature.properties['Location']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -515,93 +597,47 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_TollPlaza_7_0() {
+        function style_Proposed_Location_8_0() {
             return {
-                pane: 'pane_TollPlaza_7',
+                pane: 'pane_Proposed_Location_8',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/TollPlaza_7.svg',
+            iconUrl: 'markers/Proposed_Location_8.svg',
             iconSize: [30.4, 30.4]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_TollPlaza_7');
-        map.getPane('pane_TollPlaza_7').style.zIndex = 407;
-        map.getPane('pane_TollPlaza_7').style['mix-blend-mode'] = 'normal';
-        var layer_TollPlaza_7 = new L.geoJson(json_TollPlaza_7, {
+        map.createPane('pane_Proposed_Location_8');
+        map.getPane('pane_Proposed_Location_8').style.zIndex = 408;
+        map.getPane('pane_Proposed_Location_8').style['mix-blend-mode'] = 'normal';
+        var layer_Proposed_Location_8 = new L.geoJson(json_Proposed_Location_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_TollPlaza_7',
-            layerName: 'layer_TollPlaza_7',
-            pane: 'pane_TollPlaza_7',
-            onEachFeature: pop_TollPlaza_7,
+            dataVar: 'json_Proposed_Location_8',
+            layerName: 'layer_Proposed_Location_8',
+            pane: 'pane_Proposed_Location_8',
+            onEachFeature: pop_Proposed_Location_8,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_TollPlaza_7_0(feature));
+                return L.marker(latlng, style_Proposed_Location_8_0(feature));
             },
         });
-        bounds_group.addLayer(layer_TollPlaza_7);
-        map.addLayer(layer_TollPlaza_7);
-        function pop_ProposedLocation_8(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Loc</th>\
-                        <td>' + (feature.properties['Loc'] !== null ? autolinker.link(String(feature.properties['Loc']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_ProposedLocation_8_0() {
-            return {
-                pane: 'pane_ProposedLocation_8',
-        rotationAngle: 0.0,
-        rotationOrigin: 'center center',
-        icon: L.icon({
-            iconUrl: 'markers/ProposedLocation_8.svg',
-            iconSize: [30.4, 30.4]
-        }),
-                interactive: true,
-            }
-        }
-        map.createPane('pane_ProposedLocation_8');
-        map.getPane('pane_ProposedLocation_8').style.zIndex = 408;
-        map.getPane('pane_ProposedLocation_8').style['mix-blend-mode'] = 'normal';
-        var layer_ProposedLocation_8 = new L.geoJson(json_ProposedLocation_8, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_ProposedLocation_8',
-            layerName: 'layer_ProposedLocation_8',
-            pane: 'pane_ProposedLocation_8',
-            onEachFeature: pop_ProposedLocation_8,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.marker(latlng, style_ProposedLocation_8_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_ProposedLocation_8);
-        map.addLayer(layer_ProposedLocation_8);
+        bounds_group.addLayer(layer_Proposed_Location_8);
+        map.addLayer(layer_Proposed_Location_8);
         var overlaysTree = [
-            {label: '<img src="legend/ProposedLocation_8.png" /> Proposed Location', layer: layer_ProposedLocation_8},
-            {label: '<img src="legend/TollPlaza_7.png" /> Toll Plaza', layer: layer_TollPlaza_7},
-            {label: '<img src="legend/PetrolCNGStatons_6.png" /> Petrol-CNG Statons', layer: layer_PetrolCNGStatons_6},
-            {label: '<img src="legend/POIs_5.png" /> POIs', layer: layer_POIs_5},
-            {label: '<img src="legend/Competitors_4.png" /> Competitors', layer: layer_Competitors_4},
-            {label: '<img src="legend/DelhitoJaipurShortestRoute_3.png" /> Delhi to Jaipur Shortest Route', layer: layer_DelhitoJaipurShortestRoute_3},
-            {label: '<img src="legend/JaipurtoDelhiShortestRoute_2.png" /> Jaipur to Delhi Shortest Route', layer: layer_JaipurtoDelhiShortestRoute_2},
-            {label: '<img src="legend/DISTRICTS_1.png" /> DISTRICTS', layer: layer_DISTRICTS_1},
+            {label: '<img src="legend/Proposed_Location_8.png" /> Proposed_Location', layer: layer_Proposed_Location_8},
+            {label: '<img src="legend/HotelsResortsB2B_7.png" /> Hotels-Resorts (B2B)', layer: layer_HotelsResortsB2B_7},
+            {label: '<img src="legend/POIsFranchise_6.png" /> POIs (Franchise)', layer: layer_POIsFranchise_6},
+            {label: '<img src="legend/EVChargingStations_5.png" /> EV Charging Stations', layer: layer_EVChargingStations_5},
+            {label: '<img src="legend/Petrol_CNGStation_4.png" /> Petrol_CNG Station', layer: layer_Petrol_CNGStation_4},
+            {label: '<img src="legend/TollPlazaz_3.png" /> Toll Plazaz', layer: layer_TollPlazaz_3},
+            {label: '<img src="legend/DelhiLehTrack_2.png" /> Delhi-Leh Track', layer: layer_DelhiLehTrack_2},
+            {label: '<img src="legend/Districts_1.png" /> Districts', layer: layer_Districts_1},
             {label: "Base Map", layer: layer_BaseMap_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
@@ -664,6 +700,16 @@
             }  
         });       
         setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_Districts_1,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'fid'}));
+        if (typeof url === 'undefined') {
+            document.getElementsByClassName('search-button')[0].className += ' fa fa-binoculars';
+        } else {
+            document.getElementsByClassName('search-button')[1].className += ' fa fa-binoculars';
+        }
         </script>        
     </body>
 </html>
